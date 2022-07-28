@@ -11,17 +11,23 @@ public class EmployeeWageProblem {
         System.out.println("Welcome to Employee Wage Computation Program");
         int empCheck = (int) (Math.floor(Math.random() * 10) %3);
 
-        if(empCheck == FULL_TIME) {
-            workingHrs = 8;
-            System.out.println("Employee is Present for "+workingHrs+" Hrs");
-        }
-       else if(empCheck == PART_TIME) {
-            workingHrs = 4;
-            System.out.println("Employee is Present for "+workingHrs+" Hrs");
-        }
-        else{
-            workingHrs = 0;
-            System.out.println("Employee is Absent");
+
+
+        switch(empCheck){
+
+            case PART_TIME:
+                workingHrs = 4;
+                System.out.println("Employee is Present for "+workingHrs+" Hrs");
+                break;
+
+            case  FULL_TIME:
+                workingHrs = 8;
+                System.out.println("Employee is Present for "+workingHrs+" Hrs");
+                break;
+
+            default:
+                workingHrs = 0;
+                System.out.println("Employee is Absent");
         }
 
         empWage = workingHrs * WAGE_PER_HOUR ;
