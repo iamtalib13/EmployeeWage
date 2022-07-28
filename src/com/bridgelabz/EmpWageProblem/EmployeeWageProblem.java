@@ -7,7 +7,7 @@ public class EmployeeWageProblem {
     public static final int WORKING_DAYS = 20;
     public  static  final int TOTAL_WORKING_HOURS = 100;
 
-    public static void main(String[] args) {
+    public static void computeEmpWage() {
         int workingHrs = 0;
         int empWage = 0;
         int totalEmpWage = 0;
@@ -15,7 +15,6 @@ public class EmployeeWageProblem {
         int totalWorkingDays = 0;
         int day=1;
 
-        System.out.println("Welcome to Employee Wage Computation Program");
 
         while(totalEmpHrs <= TOTAL_WORKING_HOURS && totalWorkingDays < WORKING_DAYS) {
             totalWorkingDays++;
@@ -50,4 +49,12 @@ public class EmployeeWageProblem {
         System.out.println("Employee total Working hours is: "+ totalEmpHrs);
         System.out.println("Total Days worked By the Employee:" + totalWorkingDays);
     }
+
+
+
+    public static void main(String[] args) {
+        computeEmpWage();
+
+
+}
 }
