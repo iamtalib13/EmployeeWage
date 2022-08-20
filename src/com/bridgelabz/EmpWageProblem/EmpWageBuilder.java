@@ -1,22 +1,25 @@
 package com.bridgelabz.EmpWageProblem;
 
+import java.util.ArrayList;
+
 public class EmpWageBuilder implements EmployeeWage {
     private int noOfCompanies = 0;
-    private CompanyEmpWage[] companyEmpWages;
+
+    //ArrayList for Company Wage Object
+    ArrayList<CompanyEmpWage> lstCompanyEmpWages;
 
     public EmpWageBuilder() {
-        companyEmpWages = new CompanyEmpWage[5];
+        lstCompanyEmpWages = new ArrayList<>();
     }
 
     private void addCompanyEmpWages(String company, int wagePerHr, int numOfWorkingDays, int maxHrsPerMonth) {
-        companyEmpWages[noOfCompanies] = new CompanyEmpWage(company,wagePerHr,numOfWorkingDays,maxHrsPerMonth);
-        noOfCompanies++;
+        lstCompanyEmpWages.add(new CompanyEmpWage(company,wagePerHr,numOfWorkingDays,maxHrsPerMonth));
     }
 
     public void calculateEmpWage() {
-        for (int i = 0; i < noOfCompanies; i++) {
-            companyEmpWages[i].setTotalEmpWage(this.calculateEmpWage(companyEmpWages[i]));
-            System.out.println(companyEmpWages[i].toString());
+        for (CompanyEmpWage companyEmpWage : lstCompanyEmpWages) {
+            companyEmpWage.setTotalEmpWage(this.calculateEmpWage(companyEmpWage));
+            System.out.println(companyEmpWage.toString());
         }
     }
 
@@ -52,9 +55,9 @@ public class EmpWageBuilder implements EmployeeWage {
     public static void main(String[] args) {
         //Welcome Message for Initial Purpose
         System.out.println("Welcome to Employee Wages Problem.");
-        EmpWageBuilder employeeWageBuilderArray = new EmpWageBuilder();
-        employeeWageBuilderArray.addCompanyEmpWages("JIO",20,5,25);
-        employeeWageBuilderArray.addCompanyEmpWages("VODAFONE",15,30,30);
-        employeeWageBuilderArray.calculateEmpWage();
+        EmpWageBuilder employeeWageBuilder = new EmpWageBuilder();
+        employeeWageBuilder.addCompanyEmpWages("JIO",20,5,25);
+        employeeWageBuilder.addCompanyEmpWages("VODAFONE",15,30,30);
+        employeeWageBuilder.calculateEmpWage();
     }
 }
