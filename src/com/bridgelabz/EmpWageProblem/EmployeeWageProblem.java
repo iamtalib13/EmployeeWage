@@ -1,55 +1,71 @@
 package com.bridgelabz.EmpWageProblem;
 
 public class EmployeeWageProblem {
-    public static final int FULL_TIME = 1;
-    public static final int PART_TIME = 2;
 
+    //Constants for class
+    public static final int IS_PART_TIME = 1;
+    public static final int IS_FULL_TIME = 2;
 
-    public static int computeEmpWage(int empRatePerHour,
-                                     int NumOfWorkingDays, int MaxHrsPerMonth) {
-        int workingHrs = 0;
-        int empWage = 0;
-        int totalEmpWage = 0;
-        int totalEmpHrs = 0;
-        int totalWorkingDays = 0;
-        int day = 1;
+    //Instance Variables
+    private String companyName;
+    private int wagePerHr;
+    private int numWorkingDays;
+    private int maxHrsPerMonth;
+    private int totalEmpWage;
 
+    //Parameterised Constructor for Initializing Variables
+    public EmployeeWageProblem(String companyName, int wagePerHr, int numWorkingDays, int maxHrsPerMonth) {
+        this.companyName = companyName;
+        this.wagePerHr = wagePerHr;
+        this.numWorkingDays = numWorkingDays;
+        this.maxHrsPerMonth = maxHrsPerMonth;
+    }
 
-        while (totalEmpHrs <= MaxHrsPerMonth && totalWorkingDays < NumOfWorkingDays) {
-            totalWorkingDays++;
+    //Method to Calculate Employee Wage by Hours and Type
+    public void calculateEmpWage() {
+        // Local Variables
+        int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
+        //Compute Emp Wage for Month
+        while (totalEmpHrs <= maxHrsPerMonth && totalWorkingDays < numWorkingDays) {
+            totalWorkingDays++;     //Incrementing Working Days
+            double empCheck = Math.floor(Math.random() * 10) % 3;
 
-            int empCheck = (int) (Math.floor(Math.random() * 10) % 3);
-
-            switch (empCheck) {
-
-                case PART_TIME:
-                    workingHrs = 4;
-
+            switch ((int) empCheck) {
+                case IS_PART_TIME:
+                    System.out.println("Employee is Present as PART TIME");
+                    empHrs = 4;
                     break;
-
-                case FULL_TIME:
-                    workingHrs = 8;
+                case IS_FULL_TIME:
+                    System.out.println("Employee is Present as FULL TIME");
+                    empHrs = 8;
                     break;
-
                 default:
-                    workingHrs = 0;
-
+                    System.out.println("Employee is Absent");
+                    empHrs = 0;
+                    break;
             }
-
-            empWage = workingHrs * empRatePerHour;
-            totalEmpWage = totalEmpWage + empWage;
-            totalEmpHrs = totalEmpHrs + workingHrs;
-            day++;
+            totalEmpHrs += empHrs;
+            System.out.println("Day No :" + totalWorkingDays + " Emp Hrs: " + empHrs);
         }
+        totalEmpWage = totalEmpHrs * wagePerHr;
+    }
 
-        return totalEmpWage;
+    //Override the toString() from String Class
+    @Override
+    public String toString() {
+        return "Total Employee Wage for Company : " + companyName + " is : " + totalEmpWage;
+
     }
 
     public static void main(String[] args) {
+        //Welcome Message for Initial Purpose
+        System.out.println("Welcome to Employee Wages Problem.");
 
-        int totalWage = computeEmpWage(20, 20, 80);
-        System.out.println("Total Emp Wage for TCS: " + totalWage);
-        int totalWage1 = computeEmpWage(30, 20, 100);
-        System.out.println("Total Emp Wage for Infosys: " + totalWage1);
+        EmployeeWageProblem jio = new EmployeeWageProblem("JIO", 20, 10, 30);
+        EmployeeWageProblem vodafone = new EmployeeWageProblem("VODAFONE", 15, 5, 25);
+        jio.calculateEmpWage();
+        System.out.println(jio.toString());
+        vodafone.calculateEmpWage();
+        System.out.println(vodafone.toString());
     }
 }
