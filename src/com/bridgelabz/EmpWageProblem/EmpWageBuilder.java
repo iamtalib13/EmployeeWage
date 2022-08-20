@@ -1,11 +1,6 @@
 package com.bridgelabz.EmpWageProblem;
 
-public class EmpWageBuilder {
-
-    //Constants for class
-    public static final int IS_PART_TIME = 1;
-    public static final int IS_FULL_TIME = 2;
-
+public class EmpWageBuilder implements EmployeeWage {
     private int noOfCompanies = 0;
     private CompanyEmpWage[] companyEmpWages;
 
@@ -18,7 +13,7 @@ public class EmpWageBuilder {
         noOfCompanies++;
     }
 
-    private void calculateEmpWage() {
+    public void calculateEmpWage() {
         for (int i = 0; i < noOfCompanies; i++) {
             companyEmpWages[i].setTotalEmpWage(this.calculateEmpWage(companyEmpWages[i]));
             System.out.println(companyEmpWages[i].toString());

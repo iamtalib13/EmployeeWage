@@ -1,7 +1,6 @@
 package com.bridgelabz.EmpWageProblem;
 
 public class CompanyEmpWage {
-    //Instance Variables
     public String companyName;
     public int wagePerHr;
     public int numWorkingDays;
